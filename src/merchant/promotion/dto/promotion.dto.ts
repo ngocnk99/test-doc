@@ -162,14 +162,6 @@ export class PromotionProductDto {
   choose_type: ChooseType;
 
   @ApiProperty({
-    description: 'Loại khuyến mãi',
-    isArray: true,
-    example: [1, 2, 3, 4],
-    required: true,
-  })
-  promotion_type?: PromotionType[];
-
-  @ApiProperty({
     description: 'Danh sách ID sản phẩm loại trừ',
     isArray: true,
     example: ['323e4567-e89b-12d3-a456-426614174000'],
@@ -178,9 +170,10 @@ export class PromotionProductDto {
   not_product_ids?: string[];
 
   @ApiProperty({
-    description: 'Các trường theo mảng',
+    description:
+      "Các trường theo mảng //  ['SAN_PHAM', 'LOP'] => khuyến mãi tất cả sp lốp ",
     isArray: true,
-    example: ['SAN_PHAM', 'LOP', 'LOP_VA_BANH_XE'],
+    example: ['SAN_PHAM', 'LOP'],
     required: false,
   })
   array_fields?: string[];

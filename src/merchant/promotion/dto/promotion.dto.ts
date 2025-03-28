@@ -206,8 +206,10 @@ export class PromotionProductDto {
         classify: [2014, 2015],
         product_id: '8d32ad81-9a56-4f1d-a3eb-4d586da881d9',
         product: {
-          comment: 'sẽ có khi get detail, lúc tạo và sửa không cần truyền thông tin product',
-          comment1: 'bắt buộc truyền product_infos truyền khi ChooseType =3 (SPECIFIC) ',
+          comment:
+            'sẽ có khi get detail, lúc tạo và sửa không cần truyền thông tin product',
+          comment1:
+            'bắt buộc truyền product_infos truyền khi ChooseType =3 (SPECIFIC) ',
           comment3:
             'classify là phân loại của lốp, các sản phẩm dịch vụ khác truyền là classify ["ALL"], lốp chọn phân loại nào thì truyền phân loại đó, tất cả thì là ALL',
         },
@@ -223,6 +225,59 @@ export class PromotionProductDto {
     required: false,
   })
   product_infos?: Record<string, any>[];
+}
+export class PromotionCart {
+  @ApiProperty({
+    description: 'ID của car',
+    example: 111111,
+  })
+  cart_id: number;
+
+  @ApiProperty({
+    description: '-1 : khuyến mãi cho lĩnh vực spdv , 1: cho spdv cụ thể',
+    example: 1,
+  })
+  type: 1 | -1;
+
+  @ApiProperty({
+    description:
+      ' Giảm giá đơn hàng. Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionDetailDto],
+    required: true,
+  })
+  ORDER_DISCOUNT: PromotionDetailDto[];
+
+  @ApiProperty({
+    description:
+      'Giảm giá SP/DV đi kèm. Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionDetailDto],
+    required: true,
+  })
+  ITEM_DISCOUNT: PromotionDetailDto[];
+
+  @ApiProperty({
+    description:
+      'Tặng sản phẩm/dịch vụ. Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionDetailDto],
+    required: true,
+  })
+  PRODUCT_GIFT: PromotionDetailDto[];
+
+  @ApiProperty({
+    description:
+      ' Giảm giá đơn hàng. Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionDetailDto],
+    required: true,
+  })
+  OTHER_GIFT: PromotionDetailDto[];
+
+  @ApiProperty({
+    description:
+      'Để là mảng về sau có thể mở rộng, bên  khuyến mãi cho lĩnh vực spdv thì là mảng có 1 phần tử.Sản phẩm khuyến mãi, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionProductDto],
+    required: true,
+  })
+  promotion_product: PromotionProductDto[];
 }
 
 /**
@@ -291,17 +346,10 @@ export class CreatePromotionDto {
 
   @ApiProperty({
     description: 'Chi tiết khuyến mãi',
-    type: [PromotionDetailDto],
+    type: [PromotionCart],
     required: false,
   })
-  promotion_detail?: PromotionDetailDto[];
-
-  @ApiProperty({
-    description: 'Sản phẩm khuyến mãi',
-    type: [PromotionProductDto],
-    required: false,
-  })
-  promotion_products?: PromotionProductDto[];
+  promotion_cart?: PromotionCart[];
 }
 
 /**
@@ -473,18 +521,12 @@ export class PromotionResponseDto {
   note: string | null;
 
   @ApiProperty({
-    description: 'Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
-    type: [PromotionDetailDto],
+    description:
+      'Chi tiết khuyến mã, sẽ trả ra khi getDetail, getlist không có',
+    type: [PromotionCart],
     required: false,
   })
-  promotion_detail?: PromotionDetailDto[];
-
-  @ApiProperty({
-    description: 'Sản phẩm khuyến mãi, sẽ trả ra khi getDetail, getlist không có',
-    type: [PromotionProductDto],
-    required: false,
-  })
-  promotion_product?: PromotionProductDto[];
+  promotion_cart?: PromotionCart[];
 }
 
 /**

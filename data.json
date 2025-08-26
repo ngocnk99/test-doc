@@ -1,1 +1,26 @@
-{}
+[
+  {
+    "id": 1,
+    "name": "Camera Living Room",
+    "status": "online",
+    "timestamp": "2025-08-26T10:10:46.090Z",
+    "temperature": 24,
+    "motion": false
+  },
+  {
+    "id": 2,
+    "name": "Camera Kitchen",
+    "status": "online",
+    "timestamp": "2025-08-26T10:10:46.090Z",
+    "temperature": 26,
+    "motion": true
+  },
+  {
+    "id": 3,
+    "name": "Camera Bedroom",
+    "status": "offline",
+    "timestamp": "2025-08-26T10:10:46.090Z",
+    "temperature": 22,
+    "motion": false
+  }
+]
